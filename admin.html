@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>🛎 Dashboard Admin</title>
+
+    <link rel="stylesheet" href="assets/css/admin.css">
+
+</head>
+
+
+<body>
+
+    <!-- ADMIN DASHBOARD -->
+
+    <div class="admin-layout">
+
+
+        <!-- SIDEBAR -->
+
+        <aside
+            class="sidebar"
+            id="sidebar"
+        >
+
+            <div class="sidebar-header">
+
+                <div class="admin-logo">
+                    🛎
+                </div>
+
+                <div>
+
+                    <h2>
+                        Rumah Berkat Culinery
+                    </h2>
+
+                    <small>
+                        Jemaat
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFIL ADMIN -->
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar-wrap">
+                    <div class="profile-avatar" id="adminProfileAvatar">
+                        <img src="img/images.png" alt="Foto profil admin" onerror="this.onerror=null;this.src='img/images.png';" />
+                    </div>
+                    <button class="profile-upload-button" type="button" onclick="triggerProfileUpload('admin')" aria-label="Ganti foto profil admin">+</button>
+                </div>
+
+                <input type="file" id="adminProfileInput" accept="image/*" hidden />
+
+                <div class="profile-info">
+
+                    <strong id="adminName">
+                        Admin
+                    </strong>
+
+                    <small id="adminEmail">
+                        dimas@gmail.com
+                    </small>
+
+                    <span>
+                        Administrator
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+
+            <nav class="admin-menu">
+
+                <button
+                    class="menu-button active"
+                    onclick="showAdminSection('dashboard')"
+                >
+                    📊
+                    <span>Dashboard</span>
+                </button>
+
+
+                <button
+                    class="menu-button"
+                    onclick="showAdminSection('produk')"
+                >
+                    📦
+                    <span>Produk</span>
+                </button>
+
+
+                <button
+                    class="menu-button"
+                    onclick="showAdminSection('kasir')"
+                >
+                    👨‍💼
+                    <span>Kasir</span>
+                </button>
+
+
+                <button
+                    class="menu-button"
+                    onclick="printReport()"
+                >
+                    🖨️
+                    <span>Cetak Laporan</span>
+                </button>
+
+
+                <button
+                    class="menu-button"
+                    onclick="showAdminSection('histori')"
+                >
+                    🕐
+                    <span>Lihat Histori</span>
+                </button>
+
+            </nav>
+
+
+            <!-- LOGOUT -->
+
+            <div class="sidebar-bottom">
+
+                <button
+                    class="logout-button"
+                    onclick="adminLogout()"
+                >
+                    🚪
+                    <span>Keluar</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+            onclick="closeSidebar()"
+        ></div>
+
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="admin-main">
+
+
+            <!-- TOP BAR -->
+
+            <header class="admin-topbar">
+
+                <button
+                    class="mobile-menu"
+                    onclick="toggleSidebar()"
+                >
+                    ☰
+                </button>
+
+
+                <div>
+
+                    <h1 id="pageTitle">
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Selamat datang kembali, Admin
+                    </p>
+
+                </div>
+
+
+                <div class="datetime">
+
+                    <div
+                        id="currentTime"
+                        class="current-time"
+                    >
+                        00:00:00
+                    </div>
+
+                    <div
+                        id="currentDate"
+                        class="current-date"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- ================================
+                 DASHBOARD
+                 ================================ -->
+
+            <section
+                id="dashboardSection"
+                class="admin-section active"
+            >
+
+
+                <!-- STATISTIK -->
+
+                <div class="stat-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            💰
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Penjualan Hari Ini
+                            </span>
+
+                            <strong id="todaySales">
+                                Rp0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            🛒
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Pesanan Hari Ini
+                            </span>
+
+                            <strong id="todayOrders">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            📦
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Jumlah Produk
+                            </span>
+
+                            <strong id="totalProducts">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            👨‍💼
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Jumlah Kasir
+                            </span>
+
+                            <strong id="totalCashiers">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- GRAFIK PENJUALAN -->
+
+                <div class="chart-card">
+
+                    <div class="chart-header">
+
+                        <div>
+
+                            <h2>
+                                Grafik Penjualan
+                            </h2>
+
+                            <p>
+                                Penjualan 7 hari terakhir
+                            </p>
+
+                        </div>
+
+                        <div id="salesDateFilters" class="date-filter-group"></div>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <canvas
+                            id="salesChart"
+                        ></canvas>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DIAGRAM KATEGORI -->
+
+                <div class="chart-card">
+
+                    <div class="chart-header">
+
+                        <div>
+
+                            <h2 id="categoryChartTitle">
+                                Pembelian Hari Ini
+                            </h2>
+
+                            <p>
+                                Makanan, camilan dan minuman
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="categoryChart"
+                        class="category-chart"
+                    >
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ================================
+                 PRODUK
+                 ================================ -->
+
+            <section
+                id="produkSection"
+                class="admin-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Data Produk
+                        </h2>
+
+                        <p>
+                            Kelola makanan, camilan dan minuman
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        onclick="openProductModal()"
+                    >
+                        + Tambah Produk
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Produk
+                                </th>
+
+                                <th>
+                                    Kategori
+                                </th>
+
+                                <th>
+                                    Harga
+                                </th>
+
+                                <th>
+                                    Stok
+                                </th>
+
+                                <th>
+                                    Aksi
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="productTableBody"
+                        >
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================
+                 KASIR
+                 ================================ -->
+
+            <section
+                id="kasirSection"
+                class="admin-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Data Kasir
+                        </h2>
+
+                        <p>
+                            Kelola akun kasir
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        onclick="openCashierModal()"
+                    >
+                        + Tambah Kasir
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Nama
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Aksi
+                                </th>
+                                 <th>
+                                    Password
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="cashierTableBody"
+                        >
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <section
+                id="adminAccountsSection"
+                class="admin-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Data Admin
+                        </h2>
+
+                        <p>
+                            Kelola akun administrator
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        onclick="openAdminModal()"
+                    >
+                        + Tambah Admin
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Nama
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Aksi
+                                </th>
+
+                                <th>
+                                    Password
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="adminTableBody"
+                        >
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================================
+                 HISTORI
+                 ================================ -->
+
+            <section
+                id="historiSection"
+                class="admin-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Histori Pesanan
+                        </h2>
+
+                        <p>
+                            Riwayat transaksi marketplace
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Nomor Pesanan
+                                </th>
+
+                                <th>
+                                    Pelanggan
+                                </th>
+
+                                <th>
+                                    Jenis Pesanan
+                                </th>
+
+                                <th>
+                                    Pembayaran
+                                </th>
+
+                                <th>
+                                    Tanggal
+                                </th>
+
+                                <th>
+                                    Aksi
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="historyTableBody"
+                        >
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- ================================
+         MODAL PRODUK
+         ================================ -->
+
+    <div
+        id="productModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="productModalTitle">
+                    Tambah Produk
+                </h2>
+
+                <button
+                    onclick="closeProductModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                id="productForm"
+            >
+
+                <input
+                    type="hidden"
+                    id="productId"
+                >
+
+
+                <label>
+                    Nama Produk
+                </label>
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Contoh: Nasi Ayam"
+                    required
+                >
+
+
+                <label>
+                    Kategori
+                </label>
+
+                <select
+                    id="productCategory"
+                    required
+                >
+
+                    <option value="">
+                        Pilih kategori
+                    </option>
+
+                    <option value="makanan">
+                        Makanan
+                    </option>
+
+                    <option value="camilan">
+                        Camilan
+                    </option>
+
+                    <option value="minuman">
+                        Minuman
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Harga
+                </label>
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    placeholder="15000"
+                    min="0"
+                    required
+                >
+
+
+                <label>
+                    Stok
+                </label>
+
+                <input
+                    type="number"
+                    id="productStock"
+                    placeholder="100"
+                    min="0"
+                    required
+                >
+
+
+                <label>
+                    Gambar Produk
+                </label>
+
+                <div
+                    id="productImagePicker"
+                    class="product-image-picker"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Pilih gambar produk"
+                >
+                    <img
+                        id="productImagePreview"
+                        src="img/images.png"
+                        alt="Preview gambar produk"
+                    >
+                    <span>Pilih Gambar</span>
+                </div>
+
+                <input
+                    type="file"
+                    id="productImageFile"
+                    accept="image/*"
+                    hidden
+                >
+
+                <input
+                    type="text"
+                    id="productImage"
+                    placeholder="img/nama-produk.jpg"
+                >
+
+                <small style="display:block;margin:-6px 0 16px;color:#5d8096;">
+                    Klik area gambar untuk membuka file manager perangkat, atau isi path manual seperti img/nasi-ayam.jpg
+                </small>
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="closeProductModal()"
+                    >
+                        Batal
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Simpan
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================
+         MODAL KASIR
+         ================================ -->
+
+    <div
+        id="cashierModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Tambah Kasir
+                </h2>
+
+                <button
+                    onclick="closeCashierModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                id="cashierForm"
+            >
+
+                <label>
+                    Nama Kasir
+                </label>
+
+                <input
+                    type="text"
+                    id="cashierName"
+                    placeholder="Nama kasir"
+                    required
+                >
+
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="cashierEmail"
+                    placeholder="kasir@gmail.com"
+                    required
+                >
+
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="cashierPassword"
+                    placeholder="Password"
+                    required
+                >
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="closeCashierModal()"
+                    >
+                        Batal
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Tambahkan
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="adminModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Tambah Admin
+                </h2>
+
+                <button
+                    onclick="closeAdminModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                id="adminAccountForm"
+            >
+
+                <input
+                    type="hidden"
+                    id="adminAccountId"
+                >
+
+                <label>
+                    Nama Admin
+                </label>
+
+                <input
+                    type="text"
+                    id="adminAccountName"
+                    placeholder="Nama admin"
+                    required
+                >
+
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="adminAccountEmail"
+                    placeholder="admin@gmail.com"
+                    required
+                >
+
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="adminAccountPassword"
+                    placeholder="Password"
+                    required
+                >
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="closeAdminModal()"
+                    >
+                        Batal
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Tambahkan
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="assets/js/admin.js"></script>
+
+</body>
+
+</html>

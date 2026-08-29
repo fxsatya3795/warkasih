@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Pembayaran</title>
+
+    <link rel="stylesheet" href="assets/css/style-pengunjung.css">
+
+</head>
+
+<body>
+
+    <!-- pembayaran -->
+
+    <header class="simple-header">
+
+        <button
+            onclick="history.back()"
+            class="back-button"
+        >
+            ←
+        </button>
+
+        <h1>
+            Pembayaran
+        </h1>
+
+    </header>
+
+
+    <!-- pembayaran -->
+
+    <main class="page-container">
+
+        <div class="payment-layout">
+
+
+            <section class="payment-card">
+
+                <div class="page-icon">
+                    💳
+                </div>
+
+                <h2>
+                    Pembayaran Pesanan
+                </h2>
+
+                <p class="form-description">
+                    Periksa pesanan sebelum melakukan
+                    pembayaran.
+                </p>
+
+
+                <div
+                    id="paymentItems"
+                    class="payment-items"
+                >
+                </div>
+
+            </section>
+
+
+            <!-- pembayaran -->
+
+            <section class="payment-card">
+
+                <h3>
+                    Ringkasan Pembayaran
+                </h3>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong id="paymentSubtotal">
+                        Rp0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Ongkos Kirim
+                    </span>
+
+                    <strong id="paymentDelivery">
+                        Rp0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total Pembayaran
+                    </span>
+
+                    <strong id="paymentTotal">
+                        Rp0
+                    </strong>
+
+                </div>
+
+
+                <!-- pembayaran -->
+
+                <h3 class="payment-method-title">
+                    Metode Pembayaran
+                </h3>
+
+                <div
+                    id="paymentMethodAlert"
+                    class="distance-box"
+                    role="alert"
+                ></div>
+
+                <div id="paymentBarcodeCard" class="distance-box" hidden></div>
+
+                <label class="payment-method">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="qris"
+                        checked
+                    >
+
+                    <span>
+                        📱 QRIS
+                    </span>
+
+                </label>
+
+
+                <label class="payment-method">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="transfer"
+                    >
+
+                    <span>
+                        🏦 Transfer Bank
+                    </span>
+
+                </label>
+
+
+                <label class="payment-method">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="cash"
+                    >
+
+                    <span>
+                        💵 Bayar di Kasir
+                    </span>
+
+                </label>
+
+
+                <button
+                    class="order-button"
+                    onclick="processPayment()"
+                >
+                    Bayar Sekarang
+                </button>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script src="assets/js/pembayaran.js"></script>
+    
+
+</body>
+</html>
+

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🛎Rumah Berkat Culinary</title>
+
+    <link rel="stylesheet" href="assets/css/style-pengunjung.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+    <!-- pengunjung -->
+
+    <header class="market-header">
+
+        <div class="market-logo">
+            <span>🛍️</span>
+
+            <div>
+                <strong>Rumah Berkat Culinary</strong>
+                <small>Menjamu pengunjung dengan segenap hati</small>
+            </div>
+        </div>
+
+        <button type="button" class="login-top-button" onclick="window.location.href='pengunjung.html'">
+            Login
+        </button>
+
+    </header>
+
+
+    <!-- pengunjung -->
+
+    <main class="market-container">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-label">
+                    Produk
+                </span>
+
+                <h1>
+                    Mau makan apa hari ini?
+                </h1>
+
+                <p>
+                    Pilih makanan, camilan, dan minuman
+                    favorit Anda.
+                </p>
+
+            </div>
+
+            <div class="hero-icon">
+                🍱
+            </div>
+
+        </section>
+
+
+        <!-- pengunjung -->
+
+        <div class="category-list">
+
+            <button class="category active" onclick="filterProduct('semua')">
+                Semua
+            </button>
+
+            <button class="category" onclick="filterProduct('makanan')">
+                🍛 Makanan
+            </button>
+
+            <button class="category" onclick="filterProduct('camilan')">
+                🍪 Camilan
+            </button>
+
+            <button class="category" onclick="filterProduct('minuman')">
+                🥤 Minuman
+            </button>
+
+        </div>
+
+
+        <!-- pengunjung -->
+
+        <section class="product-section">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Menu Hari Ini</h2>
+
+                    <p>
+                        Produk pilihan untuk Anda
+                    </p>
+                </div>
+
+                <span id="productCount">
+                    0 produk
+                </span>
+
+            </div>
+
+
+            <div id="productGrid" class="product-grid">
+            </div>
+
+        </section>
+
+        <section id="visitorOrderStatus" class="visitor-order-status" hidden>
+            <div class="status-icon" id="visitorStatusIcon">&#9203;</div>
+            <div>
+                <span class="status-label">Status pesanan</span>
+                <h2 id="visitorStatusTitle">Menunggu pembayaran</h2>
+                <p id="visitorStatusMessage">Silakan lakukan pembayaran di kasir.</p>
+            </div>
+            <div id="visitorReceipt" class="visitor-receipt" hidden></div>
+        </section>
+
+    </main>
+
+
+    <!-- pengunjung -->
+    <!-- Panel pesanan muncul dari bawah -->
+
+    <div id="orderPanel" class="order-panel">
+
+        <div class="order-panel-header">
+
+            <div>
+                <strong>Pesanan Anda</strong>
+
+                <span id="cartCount">
+                    0 item
+                </span>
+            </div>
+
+            <button onclick="closeOrderPanel()" class="close-panel">
+                ×
+            </button>
+
+        </div>
+
+
+        <div id="cartItems" class="cart-items">
+        </div>
+
+
+        <!-- pengunjung -->
+
+        <div class="request-box">
+
+            <label>
+                Request / Catatan
+            </label>
+
+            <textarea id="orderRequest" placeholder="Contoh: jangan terlalu pedas..."></textarea>
+
+        </div>
+
+        <div class="cart-total">
+
+            <span>Total</span>
+
+            <strong id="cartTotal">
+                Rp0
+            </strong>
+
+        </div>
+
+
+        <button class="order-button" onclick="showOrderType()">
+            Pesan Sekarang
+        </button>
+
+    </div>
+
+
+    <!-- pengunjung -->
+
+    <div id="orderTypeModal" class="modal">
+
+        <div class="modal-card">
+
+            <button class="modal-close" onclick="closeOrderType()">
+                ×
+            </button>
+
+            <div class="modal-icon">
+                🍽️
+            </div>
+
+            <h2>
+                Bagaimana pesanan Anda?
+            </h2>
+
+            <p>
+                Pilih cara menerima pesanan.
+            </p>
+
+
+            <div class="order-type-grid">
+
+                <button onclick="selectOrderType('delivery')" class="order-type">
+
+                    <span class="material-symbols-outlined">
+                        account_balance
+                    </span>
+
+                    <strong>
+                        transfer
+                    </strong>
+
+                    <small>
+                        Pilih Bank
+                    </small>
+
+                </button>
+
+
+                <button onclick="selectOrderType('pay_kasir')" class="order-type">
+
+                    <span class="material-symbols-outlined">
+                        point_of_sale
+                    </span>
+
+                    <strong>
+                        Kasir
+                    </strong>
+
+                    <small>
+                        Silahkan bayar dikasir
+                    </small>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-menu">
+
+                <button type="button" onclick="openFooterPage('media')">
+                    📱
+                    <span>Media Sosial</span>
+                </button>
+
+                <button type="button" onclick="openFooterPage('profil')">
+                    ⛪
+                    <span>Profil Gereja</span>
+                </button>
+
+                <button type="button" onclick="openFooterPage('kontak')">
+                    📞
+                    <span>Kontak</span>
+                </button>
+
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+
+                <p>
+                    Rumah Berkat Culinary &copy; 2026. All rights reserved.
+                </p>
+
+                <small>
+                    buatan@by DimasYPS
+                </small>
+
+            </div>
+
+        </div>
+
+    </footer>
+    <script src="assets/js/pengunjung.js"></script>
+
+</body>
+
+</html>

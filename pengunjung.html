@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Sistem</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Background Awan -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+
+    <main class="login-container">
+
+        <div class="login-card">
+
+            <!-- Logo / Icon -->
+            <div class="login-icon">
+                <i class="bi bi-person-circle"></i>
+            </div>
+
+            <h2 class="text-center fw-bold mb-2">
+                Selamat Datang
+            </h2>
+
+            <p class="text-center text-muted mb-4">
+                Silakan login untuk melanjutkan
+            </p>
+
+            <!-- Alert Bootstrap -->
+            <div
+                id="loginAlert"
+                class="alert d-none"
+                role="alert"
+            ></div>
+
+            <!-- Form Login -->
+            <form id="loginForm">
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-semibold">
+                        Email
+                    </label>
+
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-envelope"></i>
+                        </span>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            placeholder="Masukkan email"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" class="form-label fw-semibold">
+                        Password
+                    </label>
+
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-lock"></i>
+                        </span>
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            placeholder="Masukkan password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            class="btn btn-outline-secondary"
+                            type="button"
+                            id="togglePassword"
+                        >
+                            <i class="bi bi-eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <div class="form-check">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="rememberMe"
+                        >
+
+                        <label
+                            class="form-check-label"
+                            for="rememberMe"
+                        >
+                            Ingat saya
+                        </label>
+                    </div>
+
+                </div>
+
+                <!-- Tombol Login -->
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-login w-100"
+                    id="loginButton"
+                >
+                    <i class="bi bi-box-arrow-in-right me-2"></i>
+                    Login
+                </button>
+
+            </form>
+
+            <div class="text-center mt-4">
+                <small class="text-muted">
+                    Sistem Informasi &copy; 2026
+                </small>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- JavaScript -->
+    <script src="assets/js/script.js"></script>
+
+</body>
+</html>

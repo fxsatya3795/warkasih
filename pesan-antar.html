@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesan Antar</title>
+    <link rel="stylesheet" href="assets/css/style-pengunjung.css" />
+</head>
+<body>
+    <header class="simple-header">
+        <button onclick="history.back()" class="back-button">←</button>
+        <h1>Pesan Antar</h1>
+    </header>
+
+    <main class="page-container">
+        <section class="payment-card">
+            <div class="page-icon">🚚</div>
+            <h2>Detail Pengiriman</h2>
+            <p class="form-description">Isi data pengiriman untuk melanjutkan pembayaran.</p>
+
+            <form id="deliveryForm" class="delivery-form">
+                <div class="form-group">
+                    <label for="receiverName">Nama penerima</label>
+                    <input id="receiverName" name="receiverName" type="text" placeholder="Contoh: Budi" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Nomor telepon</label>
+                    <input id="phone" name="phone" type="tel" placeholder="Contoh: 0812xxxx" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Alamat lengkap</label>
+                    <textarea id="address" name="address" rows="3" placeholder="Jl. ..." required></textarea>
+                </div>
+
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label for="district">Kecamatan</label>
+                        <input id="district" name="district" type="text" placeholder="Contoh: Sidoharjo" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Kota</label>
+                        <input id="city" name="city" type="text" placeholder="Contoh: Salatiga" required />
+                    </div>
+                </div>
+
+                <div class="summary-row">
+                    <span>Jarak</span>
+                    <strong id="distance">2 km</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Biaya kirim</span>
+                    <strong id="deliveryCost">Rp0</strong>
+                </div>
+
+                <button type="submit" class="order-button">Lanjut ke Pembayaran</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="assets/js/pesan-antar.js"></script>
+</body>
+</html>

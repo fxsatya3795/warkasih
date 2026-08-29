@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran Kasir</title>
+    <link rel="stylesheet" href="assets/css/style-pengunjung.css" />
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #dfefff, #ebf7ff 45%, #dfe9f3);
+            font-family: Arial, sans-serif;
+        }
+
+        .cashier-payment-shell {
+            width: min(420px, calc(100% - 28px));
+            background: rgba(255,255,255,0.82);
+            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: 0 18px 45px rgba(14, 71, 110, 0.18);
+            border-radius: 24px;
+            padding: 26px 22px 18px;
+            text-align: center;
+        }
+
+        .close-button {
+            margin-left: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: #f2f4f7;
+            font-size: 22px;
+            cursor: pointer;
+            color: #111827;
+        }
+
+        .cashier-payment-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 8px;
+        }
+
+        .barcode-box {
+            display: flex;
+            justify-content: center;
+            margin: 18px 0 12px;
+        }
+
+        .barcode-visual {
+            width: min(260px, 100%);
+            height: 120px;
+            background: #fff;
+            border: 2px solid #111827;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            padding: 10px;
+        }
+
+        .barcode-lines {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            height: 68px;
+        }
+
+        .barcode-lines span {
+            display: block;
+            width: 3px;
+            background: #111827;
+            border-radius: 1px;
+        }
+
+        .payment-code {
+            margin-top: 14px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #111827;
+            word-break: break-all;
+        }
+
+        .payment-label {
+            color: #52606d;
+            font-size: 0.88rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .exit-button {
+            width: 100%;
+            margin-top: 20px;
+            border: none;
+            border-radius: 12px;
+            background: #111827;
+            color: #fff;
+            padding: 14px 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="cashier-payment-shell">
+        <div class="cashier-payment-header">
+            <button class="close-button" type="button" aria-label="Keluar" onclick="goBackToMenu()">×</button>
+        </div>
+
+        <div class="barcode-box">
+            <div class="barcode-visual" aria-label="Barcode pembayaran kasir">
+                <div class="barcode-lines" id="barcodeLines"></div>
+            </div>
+        </div>
+
+        <div class="payment-label">Kode Pembayaran</div>
+        <div class="payment-code" id="paymentCode">KSR-000000</div>
+
+        <button class="exit-button" type="button" onclick="goBackToMenu()">Keluar</button>
+    </div>
+
+    <script src="assets/js/pembayaran-kasir.js"></script>
+</body>
+</html>
